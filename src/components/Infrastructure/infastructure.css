@@ -1,0 +1,41 @@
+.sidebar {
+  min-width: 200px;
+  background: var(--blue-gray);
+  height: 100vh;
+  position: -webkit-sticky;
+}
+
+.sidebar .nav-brand img {
+  display: block;
+  width: 120px;
+  margin: auto;
+}
+
+.sidebar .link {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  color: rgb(157, 164, 174) !important;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.sidebar .link:hover {
+  background: #ffffff0a;
+  color: #fff !important;
+}
+
+
+/* Navbar Style */
+
+.navbar {
+  z-index: 5;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0, .4);
+}
+
+.navbar svg {
+  color: #6c737f;
+  cursor: pointer;
+  font-size: 20px;
+}

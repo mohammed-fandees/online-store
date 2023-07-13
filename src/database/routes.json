@@ -1,0 +1,9 @@
+{
+  "routes": {
+    "/categories": "/categories",
+    "/products/category/electronics": "/electronics",
+    "/products/category/jewelery": "/jewelery",
+    "/products/category/men-clothes": "/men-clothes",
+    "/products/category/women-clothes": "/women-clothes"
+  }
+}

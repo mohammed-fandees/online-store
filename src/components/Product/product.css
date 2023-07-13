@@ -1,0 +1,50 @@
+.product {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.product .image {
+  display: flex;
+  height: 220px;
+}
+
+.product img {
+  width: auto;
+  height: auto;
+  max-height: 220px;
+  display: block;
+  margin: auto;
+}
+
+.product h3 {
+  font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000;
+}
+
+.product p {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000;
+}
+
+.product ul .rating {
+  font-size: 15px;
+}
+
+.product ul svg {
+  margin: 0 0 4px;
+  color: #ffc107;
+}
+
+.product ul .count {
+  font-size: 12px;
+  color: rgb(155, 155, 155);
+}
+
+.product .actions button {
+  padding-left: 15px;
+  padding-right: 15px;
+}

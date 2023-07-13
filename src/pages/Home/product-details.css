@@ -1,0 +1,33 @@
+.table-container {
+  overflow: scroll;
+}
+
+.product-details .card {
+  padding: 0 !important;
+  border: 0 !important;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.product-details img {
+  margin: 0;
+}
+
+.product-details .card {
+  height: auto !important;
+  max-height: 1000px !important;
+}
+
+.product-details .card h3,
+.product-details .card p {
+  text-wrap: wrap;
+  max-width: 400px !important;
+  overflow: visible;
+}
+
+.product-details ul,
+.product-details .actions {
+  justify-content: flex-start !important;
+  gap: 20px;
+}
