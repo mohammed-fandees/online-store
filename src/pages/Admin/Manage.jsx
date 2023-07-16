@@ -13,7 +13,6 @@ export default function Manage() {
               Add Product
             </Button>
           </Link>
-          
         </div>
       </div>
     </div>

@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const CategoriesContext = createContext();
 
 export default function CategoriesProvider(props) {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState();
+
   useEffect(() => {
     axios
       .get("http://localhost:9000/categories")

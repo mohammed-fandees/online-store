@@ -1,15 +1,17 @@
+import { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
-import { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
+import { CategoriesContext } from "../../contexts/CategoriesContext";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
-export default function NewProduct() {
-  const [categories, setCategories] = useState([]);
-  const [newProduct, setNewProduct] = useState({
+export default function CreateProduct() {
+  const [validated, setValidated] = useState(false);
+  const categories = useContext(CategoriesContext);
+
+  let newProduct = {
     id: "",
     title: "",
     price: "",
@@ -20,39 +22,19 @@ export default function NewProduct() {
       rate: 0,
       count: 0,
     },
-  });
-
-  const [validated, setValidated] = useState(false);
-
-  const navegate = useNavigate();
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:9000/categories")
-      .then((res) => setCategories(res.data));
-  }, []);
-
-  // Valedation
+  };
 
   const handleSubmit = (e) => {
     const form = e.currentTarget;
+    e.preventDefault();
     if (form.checkValidity() === false) {
-      e.preventDefault();
       e.stopPropagation();
     } else {
       axios
         .post("http://localhost:9000/products", newProduct)
-        .then((res) => console.log("Product Created Successfully: " + res));
-
-      axios
-        .post(
-          `http://localhost:9000/products/category/${newProduct.category}`,
-          newProduct
-        )
-        .then((res) => console.log("Product Created Successfully: " + res));
-      navegate("/manage");
+        .then((res) => console.log(`Product Created Successesfully`))
+        .catch((err) => console.log(err));
     }
-
     setValidated(true);
   };
 
@@ -69,7 +51,7 @@ export default function NewProduct() {
                   required
                   type="text"
                   onChange={(e) => {
-                    setNewProduct({ ...newProduct, id: e.target.value });
+                    newProduct.id = e.target.value;
                   }}
                 />
                 <Form.Control.Feedback>Valid ID</Form.Control.Feedback>
@@ -80,7 +62,7 @@ export default function NewProduct() {
                   required
                   type="text"
                   onChange={(e) => {
-                    setNewProduct({ ...newProduct, title: e.target.value });
+                    newProduct.title = e.target.value;
                   }}
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -93,10 +75,7 @@ export default function NewProduct() {
                     type="text"
                     required
                     onChange={(e) => {
-                      setNewProduct({
-                        ...newProduct,
-                        price: e.target.value,
-                      });
+                      newProduct.price = e.target.value;
                     }}
                   />
                   <Form.Control.Feedback type="invalid">
@@ -110,14 +89,15 @@ export default function NewProduct() {
                 <Form.Label>Category</Form.Label>
                 <Form.Select
                   onChange={(e) => {
-                    setNewProduct({ ...newProduct, category: e.target.value });
+                    newProduct.category = e.target.value;
                   }}
                 >
-                  {categories.map((cat) => (
-                    <option value={cat} key={cat}>
-                      {cat}
-                    </option>
-                  ))}
+                  {categories &&
+                    categories.map((cat) => (
+                      <option value={cat} key={cat}>
+                        {cat}
+                      </option>
+                    ))}
                 </Form.Select>
               </Form.Group>
               <Form.Group as={Col} md="8" controlId="validationCustom04">
@@ -126,7 +106,7 @@ export default function NewProduct() {
                   type="text"
                   required
                   onChange={(e) => {
-                    setNewProduct({ ...newProduct, image: e.target.value });
+                    newProduct.image = e.target.value;
                   }}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -142,10 +122,7 @@ export default function NewProduct() {
                   rows="7"
                   required
                   onChange={(e) => {
-                    setNewProduct({
-                      ...newProduct,
-                      description: e.target.value,
-                    });
+                    newProduct.description = e.target.value;
                   }}
                 />
                 <Form.Control.Feedback type="valid">

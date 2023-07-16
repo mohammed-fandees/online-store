@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 import { Navbar, Sidebar } from "./components";
-import { About, Categories, Category, Home, Manage, ProductDetails, NewProduct } from "./pages";
+import { About, Categories, Category, Home, Manage, ProductDetails, CreateProduct } from "./pages";
 import { CategoriesProvider, ProductsProvider } from "./contexts";
 
 export default function App() {
@@ -15,16 +15,19 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<Outlet />}>
                   <Route path="" element={<Home />} />
-                  <Route path="products/:productId" element={<ProductDetails />} />
+                  <Route
+                    path="products/:productId"
+                    element={<ProductDetails />}
+                  />
                 </Route>
                 <Route path="about" element={<About />} />
                 <Route path="categories" element={<Outlet />}>
                   <Route path="" element={<Categories />} />
-                  <Route path=":categoryName" element={<Category />} />
+                  <Route path=":catName" element={<Category />} />
                 </Route>
-                <Route path="manage" element={<Outlet />}>
+                <Route path="admin" element={<Outlet />}>
                   <Route path="" element={<Manage />} />
-                  <Route path="create-product" element={<NewProduct />} />
+                  <Route path="create-product" element={<CreateProduct />} />
                 </Route>
               </Routes>
             </CategoriesProvider>
